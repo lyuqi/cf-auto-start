@@ -10,7 +10,15 @@ from telegram import Bot
 
 # 从环境变量读取CF配置
 def get_config():
-    return [        
+    return [
+        {
+            "username": os.getenv('CF_USERNAME_1'),
+            "password": os.getenv('CF_PASSWORD_1'),
+            "api_endpoint": "api.cf.ap21.hana.ondemand.com",
+            "org": os.getenv('CF_ORG_1'),
+            "space": os.getenv('CF_SPACE_1', 'dev'),
+            "apps": [app.strip() for app in os.getenv('CF_APPS_1', '').split(',') if app.strip()]
+        },
         {
             "username": os.getenv('CF_USERNAME_2'),
             "password": os.getenv('CF_PASSWORD_2'),
